@@ -52,7 +52,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1 className="header">Fitness Tracker Web Application</h1>
+      <h1 className="header">Fitness Tracker Web Application1</h1>
 
       {/* Workout Form */}
       <div className="form">
