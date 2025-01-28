@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 14 # Change to the appropriate Node.js version you're using
+      nodejs: 22.13 # Change to the appropriate Node.js version you're using
     commands:
       - npm install # Installs dependencies
   build:
