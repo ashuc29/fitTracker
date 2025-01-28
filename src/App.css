@@ -1,0 +1,119 @@
+/* App.css */
+
+.container {
+  padding: 20px;
+  background-image: url('/src/fitnessbackground.jpg');
+  background-size: 100% 95%;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  color: #ff6347;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px; /* Ensure space between form and buttons */
+}
+
+.input {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 2px solid #ff6347;
+  width: 250px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+.button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px; /* Add margin to prevent overlap */
+}
+
+.button:hover {
+  background-color: #e94e77;
+}
+
+.message {
+  font-size: 1.2rem;
+  color: #ff6347;
+  margin-top: 20px;
+}
+
+.progress {
+  margin-top: 30px;
+  text-align: left;
+  background-color:rgb(12 150 51 / 71%);
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  width: 25%; 
+  margin-bottom: 20px; /* Space between progress and button */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .input {
+    width: 80%;
+  }
+
+  .button {
+    width: 80%;
+  }
+
+  .progress {
+    width: 90%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
