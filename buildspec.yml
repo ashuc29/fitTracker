@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14 # Change to the appropriate Node.js version you're using
+    commands:
+      - npm install # Installs dependencies
+  build:
+    commands:
+      - npm run build # Builds the React app and generates production-ready files
+
+artifacts:
+  files:
+    - '**/*'  # This tells CodeBuild to include all files
+  base-directory: build  # Tells CodeBuild that the files to deploy are in the 'build' folder
