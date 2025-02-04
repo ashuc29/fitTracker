@@ -12,17 +12,22 @@ const App = () => {
   const [message, setMessage] = useState(""); // To display feedback messages
   const [progress, setProgress] = useState(null); // To store fitness progress
   const [showProgress, setShowProgress] = useState(false); // Toggle to show/hide progress
+  const [isLoading, setIsLoading] = useState(false); // To manage loading state
   const userId = "ashuc29"; // Replace with actual userId
 
   // Fetch progress from the backend
   const fetchProgress = async () => {
+    setIsLoading(true); // Set loading state to true
     try {
       const response = await axios.get(`${API_URL}/progress?userId=${userId}`); // Pass the actual userId
-      setProgress(response.data);
+      console.log("API Response:", response.data); // Check the response in console
+      setProgress(response.data); // Store the data in the state
       setShowProgress(true); // Show progress after fetching it
     } catch (error) {
       setMessage("Error fetching progress.");
       console.error("Error fetching progress:", error);
+    } finally {
+      setIsLoading(false); // Set loading state to false
     }
   };
 
@@ -46,13 +51,13 @@ const App = () => {
       setMessage("Workout logged successfully!");
     } catch (error) {
       setMessage("Error logging workout.");
-      console.error("Error adding workout:", error);
+      console.error("Error adding workout:", error.response ? error.response.data : error);
     }
   };
 
   return (
     <div className="container">
-      <h1 className="header">Fitness Tracker Web Application1</h1>
+      <h1 className="header">Fitness Tracker </h1>
 
       {/* Workout Form */}
       <div className="form">
@@ -78,8 +83,12 @@ const App = () => {
           className="input"
         />
         <div>
-          <button onClick={addWorkout} className="button">
-            Log Workout
+          <button
+            onClick={addWorkout}
+            className="button"
+            disabled={!exercise.trim() || !duration.trim() || !calories.trim() || isLoading}
+          >
+            {isLoading ? 'Logging Workout...' : 'Log Workout'}
           </button>
         </div>
       </div>
@@ -88,17 +97,16 @@ const App = () => {
       {message && <p className="message">{message}</p>}
 
       {/* Show Progress Button */}
-      <button onClick={fetchProgress} className="button">
-        Show Progress
+      <button onClick={fetchProgress} className="button" disabled={isLoading}>
+        {isLoading ? 'Loading Progress...' : 'Show Progress'}
       </button>
 
       {/* Display Progress */}
       {showProgress && progress && (
         <div className="progress">
           <h2>Progress</h2>
-          <p>Total Calories Burned: {progress.totalCalories}</p>
-          <p>Workouts Logged: {progress.workouts}</p>
-          <p>Goal Progress: {progress.goalProgress}%</p>
+          <p>Total Calories Burned: {progress.totalCalories || 0}</p>
+          <p>Workouts Logged: {progress.workouts || 0}</p>
         </div>
       )}
     </div>
